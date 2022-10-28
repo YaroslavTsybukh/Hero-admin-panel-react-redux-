@@ -1,39 +1,28 @@
 {
   "heroes": [
     {
-      "id": 2,
-      "name": "Неизвестный герой",
-      "description": "Скрывающийся в тени",
-      "element": "wind"
-    },
-    {
-      "id": 4,
-      "name": "Неизвестный герой",
-      "description": "Скрывающийся в тени",
-      "element": "wind"
-    },
-    {
-      "id": 5,
-      "name": "Неизвестный герой",
-      "description": "Скрывающийся в тени",
-      "element": "wind"
-    },{
-      "id": 6,
-      "name": "Неизвестный герой",
-      "description": "Скрывающийся в тени",
-      "element": "wind"
-    },{
-      "id": 7,
-      "name": "Неизвестный герой",
-      "description": "Скрывающийся в тени",
-      "element": "wind"
+      "id": "d19c1fbd-ab77-4006-bb8b-d6f698555cca",
+      "name": "Yaroslav Tsybukh",
+      "description": "sdf",
+      "element": "fire"
     }
   ],
   "filters": [
-    "all",
-    "fire",
-    "water",
-    "wind",
-    "earth"
+    {
+      "name": "all",
+      "label": "Все"
+    },
+    {
+      "name": "fire",
+      "label": "Огонь"
+    },
+    {
+      "name": "water",
+      "label": "Вода"
+    },
+    {
+      "name": "earth",
+      "label": "Земля"
+    }
   ]
 }

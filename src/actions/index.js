@@ -1,3 +1,4 @@
+//Fetch
 export const heroesFetching = () => {
     return {
         type: 'HEROES_FETCHING'
@@ -17,9 +18,18 @@ export const heroesFetchingError = () => {
     }
 }
 
+//Delete
 export const deleteHero = (id) => {
     return {
         type: 'DELETE_HERO',
-        id:id
+        payload:id
+    }
+}
+
+//Create
+export const createHero = (hero) => {
+    return {
+        type: "CREATE_HERO",
+        payload: hero
     }
 }
