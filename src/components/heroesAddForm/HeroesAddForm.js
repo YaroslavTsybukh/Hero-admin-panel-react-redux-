@@ -1,6 +1,6 @@
 import {Formik , Form , Field} from "formik"
 import * as Yup from "yup"
-import {useDispatch} from "react-redux";
+import {useDispatch , useSelector} from "react-redux";
 import {createHero} from "../../actions";
 import { v4 as uuidv4 } from 'uuid';
 import {useEffect} from "react";
@@ -19,6 +19,7 @@ import {useHttp} from "../../hooks/http.hook";
 const HeroesAddForm = () => {
     const dispatch = useDispatch()
     const {request} = useHttp()
+    const {filters} = useSelector(state => state)
 
     const getHeroData = (hero) => {
         request("http://localhost:3001/heroes" , "POST" , JSON.stringify(hero))
@@ -26,6 +27,15 @@ const HeroesAddForm = () => {
             .catch(res => console.log(res))
     }
 
+    const renderOptions = () => {
+        return filters.map(({name , label}) => {
+
+            if(name === 'all') return
+
+            return <option key={name} value={name}>{label}</option>
+        })
+    }
+    const elements = renderOptions()
     return (
         <Formik initialValues={{
             id: uuidv4(),
@@ -82,11 +92,8 @@ const HeroesAddForm = () => {
                     className="form-select"
                     id="element"
                     name="element">
-                    {/*<option >Я владею элементом...</option>*/}
-                    {/*<option value="fire">Огонь</option>*/}
-                    {/*<option value="water">Вода</option>*/}
-                    {/*<option value="wind">Ветер</option>*/}
-                    {/*<option value="earth">Земля</option>*/}
+                    <option >Я владею элементом...</option>
+                    {elements}
                     </Field>
                         <p style={{color: "FF0000"}}>{errors.element}</p>
                     </div>

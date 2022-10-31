@@ -1,4 +1,4 @@
-//Fetch
+//Fetch heroes
 export const heroesFetching = () => {
     return {
         type: 'HEROES_FETCHING'
@@ -31,5 +31,28 @@ export const createHero = (hero) => {
     return {
         type: "CREATE_HERO",
         payload: hero
+    }
+}
+
+//Fetch filters
+export const filtersFetching = () => {
+    return {
+        type: "FILTERS_FETCHING"
+    }
+}
+
+export const filtersFetched = (filters , filterActive) => {
+    return {
+        type: "FILTERS_FETCHED",
+        payload: filters,
+        filterActive: filterActive
+    }
+}
+
+//Active filter
+export const activeFilter = (filter) => {
+    return {
+        type: "ACTIVE_FILTER",
+        payload: filter
     }
 }

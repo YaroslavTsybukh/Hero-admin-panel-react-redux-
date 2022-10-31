@@ -1,28 +1,43 @@
 {
   "heroes": [
     {
-      "id": "d19c1fbd-ab77-4006-bb8b-d6f698555cca",
-      "name": "Yaroslav Tsybukh",
-      "description": "sdf",
+      "id": "42d985cd-3c44-4e87-aead-915ae1f1fdd4",
+      "name": "Oleg",
+      "description": "sgs",
       "element": "fire"
+    },
+    {
+      "id": "c175fe40-f2b1-43f0-b9c3-bc0b542021e7",
+      "name": "Ярослав",
+      "description": "Я умею писать код",
+      "element": "wind"
     }
   ],
   "filters": [
     {
       "name": "all",
-      "label": "Все"
+      "label": "Все",
+      "className": "btn btn-outline-dark"
     },
     {
       "name": "fire",
-      "label": "Огонь"
+      "label": "Огонь",
+      "className": "btn btn-danger"
     },
     {
       "name": "water",
-      "label": "Вода"
+      "label": "Вода",
+      "className": "btn btn-primary"
+    },
+    {
+      "name": "wind",
+      "label": "ветер",
+      "className": "btn btn-success"
     },
     {
       "name": "earth",
-      "label": "Земля"
+      "label": "Земля",
+      "className": "btn btn-secondary"
     }
   ]
 }
