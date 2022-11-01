@@ -12,7 +12,7 @@ import {filtersFetched , filtersFetching , activeFilter} from "../../actions";
 const HeroesFilters = () => {
     const dispatch = useDispatch()
     const {request} = useHttp()
-    const {filters , filterActive} = useSelector(state => state)
+    const {filters , filterActive} = useSelector(state => state.filters)
 
     useEffect(() => {
         dispatch(filtersFetching())

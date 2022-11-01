@@ -19,7 +19,7 @@ import {useHttp} from "../../hooks/http.hook";
 const HeroesAddForm = () => {
     const dispatch = useDispatch()
     const {request} = useHttp()
-    const {filters} = useSelector(state => state)
+    const {filters} = useSelector(state => state.filters)
 
     const getHeroData = (hero) => {
         request("http://localhost:3001/heroes" , "POST" , JSON.stringify(hero))
