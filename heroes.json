@@ -5,6 +5,12 @@
       "name": "Ярослав",
       "description": "Я умею писать код",
       "element": "wind"
+    },
+    {
+      "id": "670216a1-c790-42b2-a28a-97c1e4e1d283",
+      "name": "Ярослав Цыбух",
+      "description": "Умею писать код",
+      "element": "fire"
     }
   ],
   "filters": [
