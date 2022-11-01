@@ -1,12 +1,6 @@
 {
   "heroes": [
     {
-      "id": "42d985cd-3c44-4e87-aead-915ae1f1fdd4",
-      "name": "Oleg",
-      "description": "sgs",
-      "element": "fire"
-    },
-    {
       "id": "c175fe40-f2b1-43f0-b9c3-bc0b542021e7",
       "name": "Ярослав",
       "description": "Я умею писать код",

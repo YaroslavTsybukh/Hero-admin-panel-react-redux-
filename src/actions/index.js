@@ -1,3 +1,19 @@
+//Fetch heroes func for thunk
+export const fetchHeroes = (request) => (dispatch) => {
+    dispatch(heroesFetching);
+    request("http://localhost:3001/heroes")
+        .then(data => dispatch(heroesFetched(data)))
+        .catch(() => dispatch(heroesFetchingError()))
+}
+
+//Fetch filters func for thunk
+export const fetchFilters = (request) => (dispatch) => {
+    dispatch(filtersFetching())
+    request("http://localhost:3001/filters")
+        .then(res => dispatch(filtersFetched(res)))
+        .catch(() => console.log("Ошибка fetch filters"))
+}
+
 //Fetch heroes
 export const heroesFetching = () => {
     return {
@@ -41,11 +57,10 @@ export const filtersFetching = () => {
     }
 }
 
-export const filtersFetched = (filters , filterActive) => {
+export const filtersFetched = (filters) => {
     return {
         type: "FILTERS_FETCHED",
         payload: filters,
-        filterActive: filterActive
     }
 }
 

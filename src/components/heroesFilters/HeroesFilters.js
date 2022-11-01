@@ -1,7 +1,7 @@
 import {useDispatch , useSelector} from "react-redux";
 import {useEffect} from "react";
 import {useHttp} from "../../hooks/http.hook";
-import {filtersFetched , filtersFetching , activeFilter} from "../../actions";
+import {fetchFilters , activeFilter} from "../../actions";
 // Задача для этого компонента:
 // Фильтры должны формироваться на основании загруженных данных
 // Фильтры должны отображать только нужных героев при выборе
@@ -15,9 +15,7 @@ const HeroesFilters = () => {
     const {filters , filterActive} = useSelector(state => state.filters)
 
     useEffect(() => {
-        dispatch(filtersFetching())
-        request("http://localhost:3001/filters")
-            .then(res => dispatch(filtersFetched(res , filterActive)))
+        dispatch(fetchFilters(request))
     } , [])
 
     const renderButtons = () => {
