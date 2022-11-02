@@ -1,9 +1,8 @@
 import {Formik , Form , Field} from "formik"
 import * as Yup from "yup"
 import {useDispatch , useSelector} from "react-redux";
-import {createHero} from "../../actions";
+import {heroCreated} from "../heroesList/HeroSlice";
 import { v4 as uuidv4 } from 'uuid';
-import {useEffect} from "react";
 import {useHttp} from "../../hooks/http.hook";
 
 // Задача для этого компонента:
@@ -23,7 +22,7 @@ const HeroesAddForm = () => {
 
     const getHeroData = (hero) => {
         request("http://localhost:3001/heroes" , "POST" , JSON.stringify(hero))
-            .then(res => dispatch(createHero(res)))
+            .then(res => dispatch(heroCreated(res)))
             .catch(res => console.log(res))
     }
 
