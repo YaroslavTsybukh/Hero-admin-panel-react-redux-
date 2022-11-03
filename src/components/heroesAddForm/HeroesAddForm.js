@@ -4,6 +4,8 @@ import {useDispatch , useSelector} from "react-redux";
 import {heroCreated} from "../heroesList/HeroSlice";
 import { v4 as uuidv4 } from 'uuid';
 import {useHttp} from "../../hooks/http.hook";
+import {selectAll} from "../heroesFilters/HeroesFiltersSlice"
+import store from '../../store'
 
 // Задача для этого компонента:
 // Реализовать создание нового героя с введенными данными. Он должен попадать
@@ -16,9 +18,11 @@ import {useHttp} from "../../hooks/http.hook";
 // данных из фильтров
 
 const HeroesAddForm = () => {
+    const {filtersLoading} = useSelector(state => state.filters)
+
+    const filters = selectAll(store.getState())
     const dispatch = useDispatch()
     const {request} = useHttp()
-    const {filters} = useSelector(state => state.filters)
 
     const getHeroData = (hero) => {
         request("http://localhost:3001/heroes" , "POST" , JSON.stringify(hero))
@@ -26,15 +30,18 @@ const HeroesAddForm = () => {
             .catch(res => console.log(res))
     }
 
-    const renderOptions = () => {
-        return filters.map(({name , label}) => {
+    const renderOptions = (filters , status) => {
+        if(status === "loading"){
+            return <option>Загрузка...</option>
+        }else{
+            return filters.map(({name , label}) => {
+                if(name === 'all') return
 
-            if(name === 'all') return
-
-            return <option key={name} value={name}>{label}</option>
-        })
+                return <option key={name} value={name}>{label}</option>
+            })
+        }
     }
-    const elements = renderOptions()
+    const elements = renderOptions(filters , filtersLoading)
     return (
         <Formik initialValues={{
             id: uuidv4(),

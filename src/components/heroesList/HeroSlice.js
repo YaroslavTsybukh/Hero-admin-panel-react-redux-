@@ -1,10 +1,11 @@
-import { createSlice , current , createAsyncThunk , createEntityAdapter} from "@reduxjs/toolkit";
+import {createSlice, current, createAsyncThunk, createEntityAdapter, createSelector} from "@reduxjs/toolkit";
 import {useHttp} from "../../hooks/http.hook";
 
-const initialState = {
-    heroes: [],
-    heroesLoadingStatus: 'idle',
-}
+const heroesAdapter = createEntityAdapter()
+const initialState = heroesAdapter.getInitialState({
+    heroesLoading: "idle"
+})
+
 
 export const fetchHeroes = createAsyncThunk(
     "heroes/fetch",
@@ -19,31 +20,45 @@ const heroSlice = createSlice({
     initialState,
     reducers: {
         heroDeleted : (state , action) => {
-            state.heroes = state.heroes.filter(hero => hero.id !== action.payload)
+            heroesAdapter.removeOne(state , action.payload)
         },
         heroCreated : (state , action) => {
-            state.heroes.push(action.payload)
+            heroesAdapter.addOne(state , action.payload)
         }
     },
     extraReducers: (builder) => {
         builder
             .addCase(fetchHeroes.pending , state => {
-            state.heroesLoadingStatus = "loading"
+            state.heroesLoading = "loading"
         })
             .addCase(fetchHeroes.fulfilled , (state,action) => {
-                state.heroesLoadingStatus = 'idle'
-                state.heroes = action.payload
+                state.heroesLoading = 'idle'
+                heroesAdapter.setAll(state , action.payload)
             })
             .addCase(fetchHeroes.rejected , state => {
-                state.heroesLoadingStatus = "error"
+                state.heroesLoading = "error"
             })
             .addDefaultCase((state,action) => {})
     }
 })
 
+const {selectAll} = heroesAdapter.getSelectors(state => state.heroes)
+export const filteredHeroSelector = createSelector(
+    selectAll,
+    state => state.filters.filterActive,
+    (heroes , filterActive) => {
+        if(filterActive === "all"){
+            return heroes
+        }else{
+            return heroes.filter(hero => hero.element === filterActive)
+        }
+    }
+)
+
 const {reducer , actions} = heroSlice
 
 export default reducer
+
 export const {
     heroesFetching,
     heroesFetched,

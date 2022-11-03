@@ -7,40 +7,45 @@
       "element": "wind"
     },
     {
-      "id": "670216a1-c790-42b2-a28a-97c1e4e1d283",
-      "name": "Ярослав Цыбух",
-      "description": "Умею писать код",
-      "element": "fire"
+      "id": "ce95f55e-10a1-48cd-9682-db2add655e35",
+      "name": "Алеся",
+      "description": "ыпып",
+      "element": "wind"
     },
     {
-      "id": "98f595cb-23cc-4293-b3d4-629567fccbfb",
-      "name": "Yaroslav Tsybukh",
-      "description": "sdf",
+      "id": "5739c9b4-5c68-4bba-993f-fa342cbf9762",
+      "name": "Кристина ",
+      "description": "ываываыва",
       "element": "water"
     }
   ],
   "filters": [
     {
+      "id": 1,
       "name": "all",
       "label": "Все",
       "className": "btn btn-outline-dark"
     },
     {
+      "id": 2,
       "name": "fire",
       "label": "Огонь",
       "className": "btn btn-danger"
     },
     {
+      "id": 3,
       "name": "water",
       "label": "Вода",
       "className": "btn btn-primary"
     },
     {
+      "id": 4,
       "name": "wind",
       "label": "ветер",
       "className": "btn btn-success"
     },
     {
+      "id": 5,
       "name": "earth",
       "label": "Земля",
       "className": "btn btn-secondary"

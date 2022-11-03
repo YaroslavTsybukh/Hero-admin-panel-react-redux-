@@ -1,6 +1,8 @@
 import {useDispatch , useSelector} from "react-redux";
 import {useEffect} from "react";
-import {activeFilter,fetchFilters} from "./HeroesFiltersSlice";
+import {activeFilter,fetchFilters , selectAll} from "./HeroesFiltersSlice";
+import store from "../../store";
+
 // Задача для этого компонента:
 // Фильтры должны формироваться на основании загруженных данных
 // Фильтры должны отображать только нужных героев при выборе
@@ -10,13 +12,14 @@ import {activeFilter,fetchFilters} from "./HeroesFiltersSlice";
 
 const HeroesFilters = () => {
     const dispatch = useDispatch()
-    const {filters , filterActive} = useSelector(state => state.filters)
+    const {filterActive} = useSelector(state => state.filters)
 
     useEffect(() => {
         dispatch(fetchFilters())
     } , [])
 
     const renderButtons = () => {
+        const filters = selectAll(store.getState())
         return filters.map(({ name , label , className}) => {
             const activeClass = filterActive === name ? "active" : ""
             return <button
@@ -33,11 +36,6 @@ const HeroesFilters = () => {
             <div className="card-body">
                 <p className="card-text">Отфильтруйте героев по элементам</p>
                 <div className="btn-group">
-                    {/*<button className="btn btn-outline-dark active">Все</button>*/}
-                    {/*<button className="btn btn-danger">Огонь</button>*/}
-                    {/*<button className="btn btn-primary">Вода</button>*/}
-                    {/*<button className="btn btn-success">Ветер</button>*/}
-                    {/*<button className="btn btn-secondary">Земля</button>*/}
                     {renderButtons()}
                 </div>
             </div>
